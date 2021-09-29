@@ -1,4 +1,14 @@
 102b54792f6b2ef812636a2bdaeb9d34
-::res://::1632915116
-default_env.tres::Environment::-1::1632915091::0::1::::<><>::
+::res://::1632919805
+default_env.tres::Environment::736421465884160294::1632919770::0::1::::<><>::
 icon.png::StreamTexture2D::3136897459191793377::1632915091::1632915122::1::::<><>::
+::res://assets/::1632919603
+::res://assets/sprites/::1632919638
+::res://assets/sprites/characters/::1632919642
+::res://assets/sprites/characters/player/::1632919733
+male-spritesheet.png::StreamTexture2D::2694092197045951906::1632919650::1632919733::1::::<><>::
+::res://components/::1632919401
+::res://components/characters/::1632919412
+::res://components/characters/player/::1632919770
+Player.tscn::PackedScene::4806788866701405242::1632919770::0::1::::<><>::
+::res://scenes/::1632919378

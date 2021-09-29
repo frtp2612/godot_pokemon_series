@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://caqpd0tl6t5a1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ka41g"]
+size = Vector2(16, 16)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = null
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+script = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4.37114e-08, 0)
+skew = 4.37114e-08
+shape = SubResource( "RectangleShape2D_ka41g" )
+script = null
