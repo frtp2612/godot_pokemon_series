@@ -29,6 +29,7 @@ var current_state : state = state.LOOK
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	snap_vector = Vector2(tile_size, tile_size)
+	new_position = position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

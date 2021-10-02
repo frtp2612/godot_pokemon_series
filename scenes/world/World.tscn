@@ -15,5 +15,5 @@ skew = 4.37114e-08
 y_sort_enabled = true
 
 [node name="Player" parent="Maps" instance=ExtResource( "2_4oold" )]
-position = Vector2(64, 112)
+position = Vector2(56, 112)
 skew = 4.37114e-08
