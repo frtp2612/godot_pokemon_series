@@ -1,8 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://p6o7k4m1spxs"]
+[gd_scene load_steps=16 format=3 uid="uid://p6o7k4m1spxs"]
 
 [ext_resource type="Texture2D" uid="uid://cd5tg3b7hlvj7" path="res://assets/tileset/vegetation.png" id="1_5f6ap"]
+[ext_resource type="Script" path="res://scenes/world/maps/Map.gd" id="1_k7y3w"]
 [ext_resource type="Texture2D" uid="uid://bwdyqbdmgy1ex" path="res://assets/tileset/hg-ss-mix.png" id="2_i0pai"]
 [ext_resource type="Texture2D" uid="uid://dsq5h6m8hti14" path="res://assets/tileset/decorations.png" id="3_r7rjr"]
+[ext_resource type="PackedScene" uid="uid://bkdplke3xx88q" path="res://components/interactibles/doors/Door.tscn" id="5_1kxk8"]
+[ext_resource type="PackedScene" uid="uid://dpac4d03jvqau" path="res://components/triggers/walkable_area/WalkableAreaTrigger.tscn" id="6_k0sak"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c7pkv"]
 texture = ExtResource( "1_5f6ap" )
@@ -4006,7 +4009,7 @@ tile_proxies/coords_level = []
 tile_proxies/alternative_level = []
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vejl3"]
-size = Vector2(105, 49)
+size = Vector2(104, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vk7yd"]
 size = Vector2(80, 64)
@@ -4017,8 +4020,11 @@ size = Vector2(65, 57)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abtuc"]
 size = Vector2(64, 56)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfewv"]
+size = Vector2(16, 16)
+
 [node name="TestMap" type="Node2D"]
-script = null
+script = ExtResource( "1_k7y3w" )
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -4050,7 +4056,7 @@ collision_mask = 0
 script = null
 
 [node name="C1" type="CollisionShape2D" parent="Colliders/StaticBody2D"]
-position = Vector2(67.5, 72.5)
+position = Vector2(68, 72)
 skew = 4.37114e-08
 shape = SubResource( "RectangleShape2D_vejl3" )
 script = null
@@ -4072,3 +4078,17 @@ position = Vector2(512, 356)
 skew = 4.37114e-08
 shape = SubResource( "RectangleShape2D_abtuc" )
 script = null
+
+[node name="Doors" type="Node2D" parent="."]
+script = null
+
+[node name="Door" parent="Doors" instance=ExtResource( "5_1kxk8" )]
+position = Vector2(40, 88)
+
+[node name="Area2D" parent="Doors/Door" instance=ExtResource( "6_k0sak" )]
+
+[node name="CollisionShape2D" parent="Doors/Door/Area2D" index="0"]
+skew = 4.37114e-08
+shape = SubResource( "RectangleShape2D_hfewv" )
+
+[editable path="Doors/Door/Area2D"]

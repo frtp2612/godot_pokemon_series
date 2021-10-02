@@ -8,10 +8,31 @@
 
 config_version=4
 
+_global_script_classes=[{
+"base": "Node2D",
+"class": &"GameMap",
+"language": &"GDScript",
+"path": "res://scenes/world/maps/Map.gd"
+}, {
+"base": "Object",
+"class": &"Maps",
+"language": &"GDScript",
+"path": "res://data_structures/enumerators/Maps.gd"
+}]
+_global_script_class_icons={
+"GameMap": "",
+"Maps": ""
+}
+
 [application]
 
 config/name="godot_pokemon_series"
 config/icon="res://icon.png"
+
+[autoload]
+
+GameResources="*res://singletons/GameResources.gd"
+SceneChanger="*res://singletons/SceneChanger.gd"
 
 [display]
 
@@ -50,6 +71,7 @@ run={
 [layer_names]
 
 2d_physics/layer_1="Player"
+2d_physics/layer_13="WalkableTrigger"
 2d_physics/layer_17="Obstacle"
 
 [rendering]
