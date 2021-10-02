@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://p6o7k4m1spxs"]
+[gd_scene load_steps=12 format=3 uid="uid://p6o7k4m1spxs"]
 
 [ext_resource type="Texture2D" uid="uid://cd5tg3b7hlvj7" path="res://assets/tileset/vegetation.png" id="1_5f6ap"]
 [ext_resource type="Texture2D" uid="uid://bwdyqbdmgy1ex" path="res://assets/tileset/hg-ss-mix.png" id="2_i0pai"]
@@ -4005,9 +4005,19 @@ tile_proxies/source_level = []
 tile_proxies/coords_level = []
 tile_proxies/alternative_level = []
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vejl3"]
+size = Vector2(105, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vk7yd"]
+size = Vector2(80, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_doetb"]
+size = Vector2(65, 57)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_abtuc"]
+size = Vector2(64, 56)
+
 [node name="TestMap" type="Node2D"]
-z_index = -1
-z_as_relative = false
 script = null
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -4032,4 +4042,33 @@ layer_2/tile_data = PackedInt32Array(196612, 1, 32, 262148, 1, 33, 327684, 1, 34
 script = null
 
 [node name="Colliders" type="Node2D" parent="."]
+script = null
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Colliders"]
+collision_layer = 65536
+collision_mask = 0
+script = null
+
+[node name="C1" type="CollisionShape2D" parent="Colliders/StaticBody2D"]
+position = Vector2(67.5, 72.5)
+skew = 4.37114e-08
+shape = SubResource( "RectangleShape2D_vejl3" )
+script = null
+
+[node name="C2" type="CollisionShape2D" parent="Colliders/StaticBody2D"]
+position = Vector2(376, 136)
+skew = 4.37114e-08
+shape = SubResource( "RectangleShape2D_vk7yd" )
+script = null
+
+[node name="C3" type="CollisionShape2D" parent="Colliders/StaticBody2D"]
+position = Vector2(160.5, 452.5)
+skew = 4.37114e-08
+shape = SubResource( "RectangleShape2D_doetb" )
+script = null
+
+[node name="C4" type="CollisionShape2D" parent="Colliders/StaticBody2D"]
+position = Vector2(512, 356)
+skew = 4.37114e-08
+shape = SubResource( "RectangleShape2D_abtuc" )
 script = null

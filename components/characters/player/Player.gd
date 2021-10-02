@@ -29,7 +29,7 @@ var current_state : state = state.LOOK
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	snap_vector = Vector2(tile_size, tile_size)
-	new_position = position
+	new_position = position.snapped(snap_vector)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -37,7 +37,9 @@ func _process(delta):
 		process_input(delta)
 	
 	if moving():
-		move(input_direction, delta)
+		move(look_direction, delta)
+	
+#	camera.position = position
 
 func process_input(delta):
 	input_direction = get_input()
@@ -53,7 +55,7 @@ func process_input(delta):
 				current_state = state.RUN
 			else:
 				current_state = state.WALK
-			new_position = position + input_direction * tile_size
+			new_position = position + look_direction * tile_size
 	
 	movement_velocity = velocity_map[current_state]
 	animation_tree.set("parameters/Look/blend_position", look_direction)

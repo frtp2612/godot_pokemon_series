@@ -325,13 +325,18 @@ nodes/State/position = Vector2(700, 160)
 nodes/Walk/node = SubResource( "AnimationNodeBlendSpace2D_kydif" )
 nodes/Walk/position = Vector2(320, 280)
 nodes/output/position = Vector2(1400, 160)
-node_connections = [&"State", 0, &"Look", &"State", 1, &"Walk", &"State", 2, &"Run", &"output", 0, &"State"]
+node_connections = [&"output", 0, &"State", &"State", 0, &"Look", &"State", 1, &"Walk", &"State", 2, &"Run"]
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 65536
+slide_on_ceiling = false
+floor_stop_on_slope = false
+moving_platform_apply_velocity_on_leave = 2
 script = ExtResource( "1_vchn3" )
 movement_velocity = 4
 
 [node name="Spirte" type="Sprite2D" parent="."]
+position = Vector2(8, 0)
 texture = ExtResource( "1_lxhwj" )
 hframes = 13
 vframes = 4
@@ -339,7 +344,7 @@ frame = 1
 script = null
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2(0, 8)
+position = Vector2(8, 8)
 skew = 4.37114e-08
 shape = SubResource( "RectangleShape2D_ka41g" )
 script = null
@@ -373,6 +378,4 @@ script = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-editor_draw_limits = true
-editor_draw_drag_margin = true
 script = null
