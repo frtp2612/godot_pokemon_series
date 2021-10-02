@@ -1,5 +1,17 @@
 extends CharacterBody2D
 
+enum state {
+	LOOK,
+	WALK,
+	RUN
+}
+
+var velocity_map = {
+	state.LOOK: 0,
+	state.WALK: 4,
+	state.RUN: 8
+}
+
 @export_range(8, 64, 8) var tile_size : int = 16
 @export var movement_velocity : int = 8
 
@@ -11,11 +23,8 @@ var new_position : Vector2
 
 var snap_vector = Vector2.ZERO
 
-enum state {
-	LOOK,
-	WALK,
-	RUN
-}
+var input_duration : float = 0
+var current_state : state = state.LOOK
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,14 +40,25 @@ func _process(delta):
 
 func process_input(delta):
 	input_direction = get_input()
+
 	if input_direction == Vector2.ZERO:
-		animation_tree.set("parameters/State/current", state.LOOK)
+		input_duration = 0
+		current_state = state.LOOK
 	else:
+		input_duration += delta
 		look_direction = input_direction
-		animation_tree.set("parameters/State/current", state.WALK)
+		if input_duration > delta * 4:
+			if Input.is_action_pressed("run"):
+				current_state = state.RUN
+			else:
+				current_state = state.WALK
+			new_position = position + input_direction * tile_size
+	
+	movement_velocity = velocity_map[current_state]
 	animation_tree.set("parameters/Look/blend_position", look_direction)
 	animation_tree.set("parameters/Walk/blend_position", look_direction)
-	new_position = position + input_direction * tile_size
+	animation_tree.set("parameters/Run/blend_position", look_direction)
+	animation_tree.set("parameters/State/current", current_state)
 
 func get_input():
 	if Input.get_action_strength("move_up") == 1:
