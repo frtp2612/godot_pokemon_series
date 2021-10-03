@@ -3,12 +3,13 @@ class_name GameMap extends Node2D
 
 @export var map_id : Maps.values = Maps.values.MAP_0
 
+var teleports = {}
+@onready var map_teleports = $Teleports
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	for teleport in map_teleports.get_children():
+		teleports[teleport.teleport_id] = teleport
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func get_teleport_position(connected_teleport_id):
+	return teleports[connected_teleport_id].position

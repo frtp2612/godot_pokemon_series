@@ -11,10 +11,10 @@ func _ready():
 	if root.get_child_count() > 0:
 		maps = root.get_node("Game/World/Maps")
 
-func change_scene(map_id):
-	call_deferred("_deferred_goto_scene", map_id)
+func change_scene(map_id, connected_teleport_id, player):
+	call_deferred("_deferred_goto_scene", map_id, connected_teleport_id, player)
 
-func _deferred_goto_scene(map_id):
+func _deferred_goto_scene(map_id, connected_teleport_id, player):
 	
 	for map in maps.get_children():
 		if scenes_cache.has(map.map_id):
@@ -28,3 +28,8 @@ func _deferred_goto_scene(map_id):
 	
 	# Add it to the active scene, as child of root.
 	maps.add_child(current_scene)
+	
+	if player != null:
+		player.disable_collider()
+		player.position = current_scene.get_teleport_position(connected_teleport_id)
+		player.update_new_position()

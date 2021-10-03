@@ -16,6 +16,7 @@ var velocity_map = {
 @export var movement_velocity : int = 8
 
 @onready var animation_tree = $AnimationTree
+@onready var collider = $Collider
 
 var input_direction : Vector2
 var look_direction : Vector2
@@ -79,6 +80,7 @@ func move(direction, delta):
 	position += direction * tile_size * delta * movement_velocity
 	if new_position_reached():
 		position = position.snapped(snap_vector)
+		enable_collider()
 
 func can_move():
 	return new_position_reached()
@@ -88,3 +90,13 @@ func new_position_reached():
 
 func moving():
 	return !new_position_reached()
+
+func update_new_position():
+	new_position = position + look_direction * tile_size
+	current_state = state.WALK
+
+func disable_collider():
+	collider.disabled = true
+
+func enable_collider():
+	collider.disabled = false

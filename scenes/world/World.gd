@@ -11,4 +11,7 @@ func _ready():
 	call_deferred("load_main_scene")
 
 func load_main_scene():
-	SceneChanger.change_scene(Maps.values.MAP_0)
+	for map_id in GameResources.maps:
+		if GameResources.maps[map_id] != "":
+			GameResources.loaded_maps[map_id] = load(GameResources.maps[map_id])
+	SceneChanger.change_scene(Maps.values.MAP_0, 0, null)

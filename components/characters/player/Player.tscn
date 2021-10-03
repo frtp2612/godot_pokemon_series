@@ -379,3 +379,9 @@ script = null
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 script = null
+
+[node name="InteractionDetector" type="RayCast2D" parent="."]
+position = Vector2(8, 8)
+target_position = Vector2(0, 16)
+collision_mask = 0
+script = null

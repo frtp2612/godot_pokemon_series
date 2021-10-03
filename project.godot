@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[{
+"base": "Object",
+"class": &"Directions",
+"language": &"GDScript",
+"path": "res://data_structures/enumerators/Directions.gd"
+}, {
 "base": "Node2D",
 "class": &"GameMap",
 "language": &"GDScript",
@@ -20,6 +25,7 @@ _global_script_classes=[{
 "path": "res://data_structures/enumerators/Maps.gd"
 }]
 _global_script_class_icons={
+"Directions": "",
 "GameMap": "",
 "Maps": ""
 }
