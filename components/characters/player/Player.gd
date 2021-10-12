@@ -17,6 +17,12 @@ var velocity_map = {
 
 @onready var animation_tree = $AnimationTree
 @onready var collider = $Collider
+@onready var collision_detectors = {
+	Vector2.UP: $CollisionDetector/Up,
+	Vector2.LEFT: $CollisionDetector/Left,
+	Vector2.DOWN: $CollisionDetector/Down,
+	Vector2.RIGHT: $CollisionDetector/Right
+} 
 
 var input_direction : Vector2
 var look_direction : Vector2
@@ -36,7 +42,8 @@ func _ready():
 func _process(delta):
 	if can_move():
 		process_input(delta)
-	
+
+func _physics_process(delta):
 	if moving():
 		move(look_direction, delta)
 	
@@ -51,12 +58,15 @@ func process_input(delta):
 	else:
 		input_duration += delta
 		look_direction = input_direction
+		
 		if input_duration > delta * 4:
 			if Input.is_action_pressed("run"):
 				current_state = state.RUN
 			else:
 				current_state = state.WALK
-			new_position = position + look_direction * tile_size
+		
+			if !collision_detectors[look_direction].is_colliding():
+				new_position = position + look_direction * tile_size
 	
 	movement_velocity = velocity_map[current_state]
 	animation_tree.set("parameters/Look/blend_position", look_direction)
@@ -76,7 +86,10 @@ func get_input():
 	
 	return Vector2.ZERO
 
+var colliding = false
+
 func move(direction, delta):
+
 	position += direction * tile_size * delta * movement_velocity
 	if new_position_reached():
 		position = position.snapped(snap_vector)
@@ -86,7 +99,7 @@ func can_move():
 	return new_position_reached()
 
 func new_position_reached():
-	return position.distance_to(new_position) <= 1
+	return position.distance_to(new_position) <= movement_velocity * 0.25
 
 func moving():
 	return !new_position_reached()

@@ -33,6 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="godot_pokemon_series"
+run/main_scene="res://scenes/world/World.tscn"
 config/icon="res://icon.png"
 
 [autoload]

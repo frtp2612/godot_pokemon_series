@@ -1,1 +1,4 @@
+res://components/triggers/walkable_area
+res://components/interactibles/doors
+res://singletons
 res://components/characters/player
