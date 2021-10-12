@@ -15,7 +15,7 @@ func change_scene(map_id, connected_teleport_id, player):
 	call_deferred("_deferred_goto_scene", map_id, connected_teleport_id, player)
 
 func _deferred_goto_scene(map_id, connected_teleport_id, player):
-	
+
 	for map in maps.get_children():
 		if scenes_cache.has(map.map_id):
 			scenes_cache[map.map_id] = map
@@ -30,6 +30,6 @@ func _deferred_goto_scene(map_id, connected_teleport_id, player):
 	maps.add_child(current_scene)
 	
 	if player != null:
-		player.disable_collider()
 		player.position = current_scene.get_teleport_position(connected_teleport_id)
 		player.update_new_position()
+		player.position = player.new_position

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://p6o7k4m1spxs"]
+[gd_scene load_steps=15 format=3 uid="uid://p6o7k4m1spxs"]
 
 [ext_resource type="Texture2D" uid="uid://cd5tg3b7hlvj7" path="res://assets/tileset/vegetation.png" id="1_5f6ap"]
 [ext_resource type="Script" path="res://scenes/world/maps/Map.gd" id="1_k7y3w"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://dsq5h6m8hti14" path="res://assets/tileset/decorations.png" id="3_r7rjr"]
 [ext_resource type="PackedScene" uid="uid://bkdplke3xx88q" path="res://components/interactibles/doors/Door.tscn" id="5_1kxk8"]
 [ext_resource type="Texture2D" uid="uid://dynxpr2x7x67f" path="res://assets/tileset/cave.png" id="5_d6rbx"]
-[ext_resource type="PackedScene" uid="uid://dpac4d03jvqau" path="res://components/triggers/walkable_area/WalkableAreaTrigger.tscn" id="6_k0sak"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c7pkv"]
 texture = ExtResource( "1_5f6ap" )
@@ -14211,9 +14210,6 @@ size = Vector2(65, 57)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abtuc"]
 size = Vector2(64, 56)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfewv"]
-size = Vector2(16, 23.5)
-
 [node name="TestMap" type="Node2D"]
 script = ExtResource( "1_k7y3w" )
 
@@ -14268,17 +14264,6 @@ script = null
 script = null
 
 [node name="Door" parent="Teleports" instance=ExtResource( "5_1kxk8" )]
-position = Vector2(32, 80)
+position = Vector2(40, 88)
 connected_area = 1
 telport_direction = 0
-
-[node name="Area2D" parent="Teleports/Door" instance=ExtResource( "6_k0sak" )]
-position = Vector2(8, 8)
-
-[node name="CollisionShape2D" parent="Teleports/Door/Area2D" index="0"]
-position = Vector2(-1.14441e-05, -4.25)
-rotation = 3.14159
-skew = 4.37114e-08
-shape = SubResource( "RectangleShape2D_hfewv" )
-
-[editable path="Teleports/Door/Area2D"]

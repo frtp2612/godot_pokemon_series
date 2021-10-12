@@ -33,6 +33,8 @@ var snap_vector = Vector2.ZERO
 var input_duration : float = 0
 var current_state : state = state.LOOK
 
+var colliding_entity
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	snap_vector = Vector2(tile_size, tile_size)
@@ -67,6 +69,13 @@ func process_input(delta):
 		
 			if !collision_detectors[look_direction].is_colliding():
 				new_position = position + look_direction * tile_size
+			else:
+				colliding_entity = collision_detectors[look_direction].get_collider()
+				if colliding_entity is Interactible:
+					match colliding_entity.interaction_type:
+						Interactibles.values.DOOR:
+							colliding_entity.execute_action(self)
+					
 	
 	movement_velocity = velocity_map[current_state]
 	animation_tree.set("parameters/Look/blend_position", look_direction)
