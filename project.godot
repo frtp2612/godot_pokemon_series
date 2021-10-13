@@ -8,10 +8,50 @@
 
 config_version=4
 
+_global_script_classes=[{
+"base": "Object",
+"class": &"Directions",
+"language": &"GDScript",
+"path": "res://data_structures/enumerators/Directions.gd"
+}, {
+"base": "Node2D",
+"class": &"GameMap",
+"language": &"GDScript",
+"path": "res://scenes/world/maps/Map.gd"
+}, {
+"base": "StaticBody2D",
+"class": &"Interactible",
+"language": &"GDScript",
+"path": "res://components/interactibles/Interactible.gd"
+}, {
+"base": "Object",
+"class": &"Interactibles",
+"language": &"GDScript",
+"path": "res://data_structures/enumerators/Interactibles.gd"
+}, {
+"base": "Object",
+"class": &"Maps",
+"language": &"GDScript",
+"path": "res://data_structures/enumerators/Maps.gd"
+}]
+_global_script_class_icons={
+"Directions": "",
+"GameMap": "",
+"Interactible": "",
+"Interactibles": "",
+"Maps": ""
+}
+
 [application]
 
 config/name="godot_pokemon_series"
+run/main_scene="res://scenes/world/World.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+GameResources="*res://singletons/GameResources.gd"
+SceneChanger="*res://singletons/SceneChanger.gd"
 
 [display]
 
@@ -50,6 +90,7 @@ run={
 [layer_names]
 
 2d_physics/layer_1="Player"
+2d_physics/layer_13="WalkableTrigger"
 2d_physics/layer_17="Obstacle"
 
 [rendering]

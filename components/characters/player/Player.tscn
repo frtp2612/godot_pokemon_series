@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://components/characters/player/Player.gd" id="1_vchn3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ka41g"]
-size = Vector2(16, 16)
+size = Vector2(15, 15)
 
 [sub_resource type="Animation" id="Animation_pv0ev"]
 resource_name = "LookDown"
@@ -332,6 +332,8 @@ collision_mask = 65536
 slide_on_ceiling = false
 floor_stop_on_slope = false
 moving_platform_apply_velocity_on_leave = 2
+moving_platform_floor_layers = 4294901759
+moving_platform_wall_layers = 65536
 script = ExtResource( "1_vchn3" )
 movement_velocity = 4
 
@@ -378,4 +380,37 @@ script = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+script = null
+
+[node name="InteractionDetector" type="RayCast2D" parent="."]
+position = Vector2(8, 8)
+target_position = Vector2(0, 16)
+collision_mask = 0
+script = null
+
+[node name="CollisionDetector" type="Node2D" parent="."]
+position = Vector2(8, 8)
+script = null
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Down" type="RayCast2D" parent="CollisionDetector"]
+target_position = Vector2(0, 16)
+collision_mask = 65536
+script = null
+
+[node name="Right" type="RayCast2D" parent="CollisionDetector"]
+target_position = Vector2(16, 0)
+collision_mask = 65536
+script = null
+
+[node name="Up" type="RayCast2D" parent="CollisionDetector"]
+target_position = Vector2(0, -16)
+collision_mask = 65536
+script = null
+
+[node name="Left" type="RayCast2D" parent="CollisionDetector"]
+target_position = Vector2(-16, 0)
+collision_mask = 65536
 script = null

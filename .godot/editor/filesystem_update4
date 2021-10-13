@@ -1,5 +1,4 @@
-res://components/characters/player/Player.gd
-res://components/characters/player/Player.tscn
+res://components/interactibles/doors/Door.tscn
 res://default_env.tres
 res://scenes/world/World.tscn
 res://scenes/world/maps/TestMap/TestMap.tscn

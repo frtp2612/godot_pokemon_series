@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpac4d03jvqau"]
+
+[ext_resource type="Script" path="res://components/triggers/walkable_area/WalkableAreaTrigger.gd" id="1_rb07n"]
+
+[node name="Area2D" type="Area2D"]
+skew = 4.37114e-08
+collision_layer = 4096
+script = ExtResource( "1_rb07n" )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+one_way_collision = true
+script = null
+
+[connection signal="body_entered" from="." to="." method="_on_Area2D_body_entered"]

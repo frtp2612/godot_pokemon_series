@@ -1,19 +1,20 @@
 [gd_scene load_steps=3 format=3 uid="uid://dakrabkavqyoy"]
 
-[ext_resource type="PackedScene" uid="uid://p6o7k4m1spxs" path="res://scenes/world/maps/TestMap/TestMap.tscn" id="1_s6uj1"]
+[ext_resource type="Script" path="res://scenes/world/World.gd" id="1_jrfln"]
 [ext_resource type="PackedScene" uid="uid://caqpd0tl6t5a1" path="res://components/characters/player/Player.tscn" id="2_4oold"]
 
-[node name="World" type="Node2D"]
-script = null
+[node name="Game" type="Node2D"]
+script = ExtResource( "1_jrfln" )
 
-[node name="Maps" type="Node2D" parent="."]
+[node name="World" type="Node2D" parent="."]
 y_sort_enabled = true
 script = null
 
-[node name="TestMap" parent="Maps" instance=ExtResource( "1_s6uj1" )]
+[node name="Maps" type="Node2D" parent="World"]
 skew = 4.37114e-08
 y_sort_enabled = true
+script = null
 
-[node name="Player" parent="Maps" instance=ExtResource( "2_4oold" )]
+[node name="Player" parent="World" instance=ExtResource( "2_4oold" )]
 position = Vector2(80, 0)
 skew = 4.37114e-08

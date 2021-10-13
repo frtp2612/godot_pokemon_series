@@ -1,7 +1,12 @@
-TileMap
-Node2D
-AnimationTree
-AnimationPlayer
+StaticBody2D
 CollisionShape2D
+AnimatableBody2D
+AnimationPlayer
 Sprite2D
+RayCast2D
+Node2D
+AnimatedSprite2D
+Area2D
+TileMap
+AnimationTree
 CharacterBody2D
