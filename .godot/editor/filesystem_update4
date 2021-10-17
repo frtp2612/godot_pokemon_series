@@ -1,4 +1,10 @@
+res://components/characters/player/Player.gd
+res://components/interactibles/doors/Door.gd
 res://components/interactibles/doors/Door.tscn
+res://data_structures/enumerators/ScriptTypes.gd
+res://data_structures/script/GameScript.gd
 res://default_env.tres
 res://scenes/world/World.tscn
-res://scenes/world/maps/TestMap/TestMap.tscn
+res://scenes/world/maps/Map.gd
+res://singletons/SceneChanger.gd
+res://singletons/SignalsManager.gd

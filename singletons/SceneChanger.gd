@@ -6,6 +6,8 @@ var current_scene = null
 var root
 var maps
 
+signal scene_changed
+
 func _ready():
 	root = get_tree().get_root()
 	if root.get_child_count() > 0:
@@ -31,5 +33,10 @@ func _deferred_goto_scene(map_id, connected_teleport_id, player):
 	
 	if player != null:
 		player.position = current_scene.get_teleport_position(connected_teleport_id)
-		player.update_new_position()
+		player.update_new_position(1, false)
 		player.position = player.new_position
+		call_deferred("release_player", player)
+
+func release_player(player):
+	player.show()
+	player.release_input()

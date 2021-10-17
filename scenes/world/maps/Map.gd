@@ -13,3 +13,6 @@ func _ready():
 
 func get_teleport_position(connected_teleport_id):
 	return teleports[connected_teleport_id].position
+
+func teleport_is_door(connected_teleport_id):
+	return teleports[connected_teleport_id].interaction_type == Interactibles.values.DOOR

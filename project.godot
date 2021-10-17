@@ -19,6 +19,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://scenes/world/maps/Map.gd"
 }, {
+"base": "Resource",
+"class": &"GameScript",
+"language": &"GDScript",
+"path": "res://data_structures/script/GameScript.gd"
+}, {
 "base": "StaticBody2D",
 "class": &"Interactible",
 "language": &"GDScript",
@@ -33,13 +38,20 @@ _global_script_classes=[{
 "class": &"Maps",
 "language": &"GDScript",
 "path": "res://data_structures/enumerators/Maps.gd"
+}, {
+"base": "Object",
+"class": &"ScriptTypes",
+"language": &"GDScript",
+"path": "res://data_structures/enumerators/ScriptTypes.gd"
 }]
 _global_script_class_icons={
 "Directions": "",
 "GameMap": "",
+"GameScript": "",
 "Interactible": "",
 "Interactibles": "",
-"Maps": ""
+"Maps": "",
+"ScriptTypes": ""
 }
 
 [application]
@@ -52,6 +64,7 @@ config/icon="res://icon.png"
 
 GameResources="*res://singletons/GameResources.gd"
 SceneChanger="*res://singletons/SceneChanger.gd"
+SignalsManager="*res://singletons/SignalsManager.gd"
 
 [display]
 

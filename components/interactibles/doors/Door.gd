@@ -23,6 +23,9 @@ func execute_action(player):
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	player_temp.update_new_position()
+	player_temp.update_new_position(1, true)
 	player_temp.disable_collider()
+	
+	await SignalsManager.player_movement_stopped
+	player_temp.hide()
 	SceneChanger.change_scene(connected_area, connected_teleport_id, player_temp)

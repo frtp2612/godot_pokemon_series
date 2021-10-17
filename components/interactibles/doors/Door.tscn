@@ -52,7 +52,6 @@ frame = 1
 script = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "OpenDoor1"
 anims/OpenDoor1 = SubResource( "Animation_8lsxk" )
 anims/RESET = SubResource( "Animation_mxxxu" )
 blend_times = []

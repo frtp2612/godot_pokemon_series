@@ -35,17 +35,21 @@ var current_state : state = state.LOOK
 
 var colliding_entity
 
+var emit_movement_finished_signal : bool = false
+var input_locked : bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	snap_vector = Vector2(tile_size, tile_size)
 	new_position = position.snapped(snap_vector)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if can_move():
-		process_input(delta)
 
 func _physics_process(delta):
+	if can_move():
+		process_input(delta)
+	
+	update_animation_tree()
+	
 	if moving():
 		move(look_direction, delta)
 	
@@ -72,11 +76,13 @@ func process_input(delta):
 			else:
 				colliding_entity = collision_detectors[look_direction].get_collider()
 				if colliding_entity is Interactible:
+					lock_input()
+					current_state = state.WALK
 					match colliding_entity.interaction_type:
 						Interactibles.values.DOOR:
 							colliding_entity.execute_action(self)
 					
-	
+func update_animation_tree():
 	movement_velocity = velocity_map[current_state]
 	animation_tree.set("parameters/Look/blend_position", look_direction)
 	animation_tree.set("parameters/Walk/blend_position", look_direction)
@@ -103,9 +109,12 @@ func move(direction, delta):
 	if new_position_reached():
 		position = position.snapped(snap_vector)
 		enable_collider()
+		if emit_movement_finished_signal:
+			SignalsManager.player_movement_stopped.emit()
+			emit_movement_finished_signal = false
 
 func can_move():
-	return new_position_reached()
+	return !input_locked and new_position_reached()
 
 func new_position_reached():
 	return position.distance_to(new_position) <= movement_velocity * 0.25
@@ -113,12 +122,19 @@ func new_position_reached():
 func moving():
 	return !new_position_reached()
 
-func update_new_position():
-	new_position = position + look_direction * tile_size
+func update_new_position(distance, emit_signal_at_end):
+	new_position = position + look_direction * tile_size * distance
 	current_state = state.WALK
+	emit_movement_finished_signal = emit_signal_at_end
 
 func disable_collider():
 	collider.disabled = true
 
 func enable_collider():
 	collider.disabled = false
+
+func release_input():
+	input_locked = false
+
+func lock_input():
+	input_locked = true
